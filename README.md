@@ -1,2 +1,2 @@
-# automation
+# Automation
 Only automation tasks
