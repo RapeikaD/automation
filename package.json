@@ -1,0 +1,19 @@
+{
+  "name": "automation",
+  "version": "1.0.0",
+  "description": "Rework project ",
+  "main": "conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/RapeikaD/automation"
+  },
+  "keywords": [
+    "protractor",
+    "automation"
+  ],
+  "author": "Rapeika D",
+  "license": "ISC"
+}
