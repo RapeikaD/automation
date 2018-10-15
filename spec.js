@@ -32,7 +32,8 @@ describe('This is first ptr test which', function() {
 		//element(by.name('to')).sendKeys('Retestd2@gmail.com')
 		element(by.name('to')).sendKeys(data.EmailTwo)
 		element(by.name('subjectbox')).sendKeys(RandomTitle)
-		element(by.className('Am Al editable LW-avf')).sendKeys('You are the best!')
+		//element(by.className('Am Al editable LW-avf')).sendKeys(data.BodyText)
+		element(by.className('Am Al editable LW-avf')).sendKeys(' - You are the best!')
 		
 		browser.actions().keyDown(protractor.Key.CONTROL).sendKeys('\uE007').perform();
 		browser.get("https://mail.google.com/mail/#sent")
@@ -46,8 +47,8 @@ describe('This is first ptr test which', function() {
 		for(var i = 0; i < headerList.length; i ++) {
 			if (headerList[i] == RandomTitle) {
 				expect(headerList.get(i).getText()).toBe(RandomTitle)
-				//expect(list.get(i).getText()).toBe(' - You are the best!')
-				expect(list.get(i).getText()).toBe(data.BodyText)
+				expect(list.get(i).getText()).toBe(' - You are the best!')
+				//expect(list.get(i).getText()).toBe(" - " + data.BodyText)
 				break;
 			}
 		}
@@ -60,9 +61,9 @@ describe('This is first ptr test which', function() {
 			
 		browser.restart()
 		browser.waitForAngularEnabled(false);
-		browser.get('http://gmail.com/')
+		//browser.get('http://gmail.com/')
+		browser.get(data.site)
 		
-
 		//element(by.name('identifier')).sendKeys('Retestd2@gmail.com');
 		element(by.name('identifier')).sendKeys(data.EmailTwo);
 		element(by.id('identifierNext')).click();
@@ -78,8 +79,8 @@ describe('This is first ptr test which', function() {
 
 		for(var e = 0; e < unreadedLetters.length; e++)
 		if (unreadedLetters[e] == "test d" && inboxHeaders[e] == RandomTitle) {
-			//expect(mailBody.get(i).getText()).toBe(' - You are the best!')
-			expect(mailBody.get(i).getText()).toBe(data.BodyText)
+			expect(mailBody.get(i).getText()).toBe(' - You are the best!')
+			//expect(mailBody.get(i).getText()).toBe(" - " + data.BodyText)
 			break;
 		}
 	})
