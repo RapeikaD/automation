@@ -1,0 +1,8 @@
+let loginPage = function () {
+
+	let idr = element(by.name('identifier'));
+	let idNext = element(by.id('identifierNext'));
+	let password = element(by.name('password'));
+	let passwordNext = element(by.id('passwordNext'));
+	
+}

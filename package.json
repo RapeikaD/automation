@@ -15,14 +15,16 @@
     "automation"
   ],
   "author": "Rapeika D",
-  "license": "ISC",
+  "license": "ISC",  
+  "dependencies": {},// look here! and 1 string below
+  "devDependencies": {
+    "allure-commandline": "^2.7.0",
+    "jasmine-allure-reporter": "^1.0.2"
+  },
+  "scripts": {
+        "pretest": "rm -rf allure-report",
+        "test": "protractor conf.js",
+        "posttest": "allure generate allure-results --clean -o allure-report || true"
+    }
 
-  "data": {
-  "site": "http://gmail.com/",
-  "EmailOne": "Retestd1@gmail.com",
-  "EmailTwo": "Retestd2@gmail.com",
-  "PassOne": "strongerpassword!",
-  "PassTwo": "strongerpassword!",
-  "timer": "5000"
-  }
 }
