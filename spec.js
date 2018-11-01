@@ -1,50 +1,34 @@
+var decache = require('decache')
 let data = require("./data.js");
 let loginPage = require("./loginPage.js");
 let inbox = require("./inbox.js");
-//let conf = require('conf.js')
-//module.export = conf
-//const ii=require ('./conf.js')
-//var config = require("./conf.js")()
-
 
 //тесты
 describe('This is first ptr test which', function() {
-	beforeEach(async function() {
-		//browser.restart()
+	beforeEach(function() {
 		browser.waitForAngularEnabled(false);
-		browser.get(data.site);
+		browser.get(data.site);//add in page Object
 	});
 
-
-	
 	it("should send email and verify Sent email", function() {
 		//заходим в почту, создаем письмо и отправляем 2му пользователю
-		//browser.waitForAngularEnabled(false);
-		//browser.get(data.site)
-
-		element(by.name('identifier')).sendKeys(data.EmailOne);
-		//loginPage.idr.sendKeys(data.EmailOne);
-		element(by.id('identifierNext')).click();
-		//loginPage.idNext.click();
+		loginPage.enterName(data.EmailOne);
+		loginPage.clickNext1();
 		browser.pause();
-		element(by.name('password')).sendKeys(data.PassOne);
-		//loginPage.password.sendKeys(data.PassOne);
-		element(by.id('passwordNext')).click();
-		//loginPage.passwordNext.click();		
+		loginPage.enterPassword(data.PassOne);
+		loginPage.clickNext2();
 		browser.wait(element(by.css(".T-I")).isPresent())
   		browser.sleep(data.timer)
-  		//browser.wait(data.timer)  		
-  		//browser.wait(element(by.className("tYe0Ve")).isPresent())
   		browser.get("https://mail.google.com/mail/#inbox?compose=new")
 		browser.sleep(data.timer)
+		
 		//генерируем уникальное имя для письма и вводим шаблонный текст письма
 		var number = Math.round((Math.random() * 100))
 		var RandomTitle = "Hello dear client # " + number
 
-		element(by.name('to')).sendKeys(data.EmailTwo)
-		element(by.name('subjectbox')).sendKeys(RandomTitle)
-		element(by.className('Am Al editable LW-avf')).sendKeys(' - You are the best!')
-		
+		inbox.SendTo(data.EmailTwo)
+		inbox.TypeTitle(RandomTitle)
+		inbox.TypeDescription(data.BodyText)
 		browser.actions().keyDown(protractor.Key.CONTROL).sendKeys('\uE007').perform();
 		browser.get("https://mail.google.com/mail/#sent")
 		browser.sleep(data.timer)
@@ -56,40 +40,43 @@ describe('This is first ptr test which', function() {
 		for(var i = 0; i < headerList.length; i ++) {
 			if (headerList[i] == RandomTitle) {
 				expect(headerList.get(i).getText()).toBe(RandomTitle)
-				expect(list.get(i).getText()).toBe(' - You are the best!')
+				expect(list.get(i).getText()).toBe(' - ' + data.BodyText)
 				break;
 			}
 		}
-	
-		//browser.close()
-
 	})
 
 	it('should check presence of email sent from account 1', function() {
-			//browser.restart()
-		//browser.restart()
-		//browser.waitForAngularEnabled(false);
-		//browser.get(data.site)
 		//заходим в почту 2м юзером для проверки получения отправленного письма
-		element(by.name('identifier')).sendKeys(data.EmailTwo);
-		element(by.id('identifierNext')).click();
+		loginPage.enterName(data.EmailTwo)
+		loginPage.clickNext1()
 		browser.pause();
-		element(by.name('password')).sendKeys(data.PassTwo);
-		element(by.id('passwordNext')).click();
+		loginPage.enterPassword(data.PassTwo);
+		loginPage.clickNext2();
 		browser.wait(element(by.css(".T-I")).isPresent())
+		browser.sleep(data.timer)
 
 		let unreadedLetters = element.all(by.css('.zF'))
 		let inboxHeaders = element.all(by.css('.bog'))
 		let mailBody = element.all(by.css('.y2'))
+
 		//получаем тайтлы последних писем и находим письмо с тайтлом сгенерированным первым юзером
 		for(var e = 0; e < unreadedLetters.length; e++)
 		if (unreadedLetters[e] == "test d" && inboxHeaders[e] == RandomTitle) {
-			expect(mailBody.get(i).getText()).toBe(' - You are the best!')
+			expect(mailBody.get(i).getText()).toBe(' - ' + data.BodyText)
 			break;
 		}
 	})
-	afterEach(async function() {
-		browser.close()
+	afterEach(function() {
+		decache('./data.js');
+		decache("./loginPage.js");
+		decache("./inbox.js");
+
 		browser.restart()
+
+		data = require("./data.js");		
+		loginPage = require("./loginPage.js");
+		inbox = require("./inbox.js");
+
 	})
 })

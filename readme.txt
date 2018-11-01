@@ -13,3 +13,5 @@ Win10x64
 
 To add component type: npm install protractor --save-dev
 
+npm update --save-dev
+

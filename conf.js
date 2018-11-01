@@ -2,11 +2,7 @@ exports.config = {
   framework: 'jasmine',
   seleniumAddress: 'http://localhost:4444/wd/hub',
   specs: ['spec.js'],
- // baseUrl: 'https://gmail.com',
-  //workURL: 'https://mail.google.com',
-
-
-
+  url: 'https://gmail.com',
 
 //подключаем Allure со скриншотами
   onPrepare: function() {

@@ -4,7 +4,9 @@
   "description": "Rework project ",
   "main": "conf.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "rm -rf allure-report",
+    "test": "protractor conf.js",
+    "posttest": "allure generate allure-results --clean -o allure-report || true"
   },
   "repository": {
     "type": "git",
@@ -15,16 +17,11 @@
     "automation"
   ],
   "author": "Rapeika D",
-  "license": "ISC",  
-  "dependencies": {},// look here! and 1 string below
+  "license": "ISC",
+  "dependencies": {},
   "devDependencies": {
     "allure-commandline": "^2.7.0",
+    "decache": "^4.4.1",
     "jasmine-allure-reporter": "^1.0.2"
-  },
-  "scripts": {
-        "pretest": "rm -rf allure-report",
-        "test": "protractor conf.js",
-        "posttest": "allure generate allure-results --clean -o allure-report || true"
-    }
-
+  }
 }
