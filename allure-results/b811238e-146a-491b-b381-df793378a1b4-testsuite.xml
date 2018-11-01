@@ -1,0 +1,27 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1541074084846' stop='1541074118364'>
+    <name>This is first ptr test which</name>
+    <title>This is first ptr test which</title>
+    <test-cases>
+        <test-case start='1541074084846' status='passed' stop='1541074107235'>
+            <name>should send email and verify Sent email</name>
+            <title>should send email and verify Sent email</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments>
+                <attachment title='Screenshot' source='045ef620-1026-4de6-9690-c6416e0941ee-attachment.png' type='image/png' size='5192'/>
+            </attachments>
+        </test-case>
+        <test-case start='1541074107235' status='passed' stop='1541074118364'>
+            <name>should check presence of email sent from account 1</name>
+            <title>should check presence of email sent from account 1</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments>
+                <attachment title='Screenshot' source='37aa29c6-5be6-42b4-8f0c-656ab79755bf-attachment.png' type='image/png' size='5192'/>
+            </attachments>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
