@@ -17,8 +17,10 @@ let loginPage = function () {
 		password.sendKeys(pas)
 	};
 
-	this.submitPassword = function() {
-		passwordNext.click()
+	this.submitPassword = function(delay) {
+		passwordNext.click();
+        //browser.wait(element(by.css(".T-I")).isPresent());
+        //browser.sleep(delay);
 	};
 
 	this.open = function(link) {
