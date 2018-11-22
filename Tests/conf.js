@@ -6,7 +6,7 @@ exports.config = {
 
 //подключаем Allure со скриншотами
     onPrepare: function () {
-        var AllureReporter = require('jasmine-allure-reporter');
+        let AllureReporter = require('jasmine-allure-reporter');
         jasmine.getEnv().addReporter(new AllureReporter({
             resultsDir: 'allure-results'
         }));

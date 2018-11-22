@@ -5,14 +5,14 @@ let inboxPage = function () {
 
     let receiver = element(by.name('to'));
     let mailTitle = element(by.name('subjectbox'));
-    let mailDescription = element(by.className('Am Al editable LW-avf'));
+    let mailDescription = element(by.css('div[aria-label="Message Body"]'));
 
     //collect all titles for further check presence of required one
     let headerList = element.all(by.css('.bog'));
     let list = element.all(by.css('.y2'));
 
     //variables to look for email received from first user
-    let unreadedLetters = element.all(by.css('.zF'));
+    let unreadedLetters = element.all(by.css('span[email="retestd1@gmail.com"]'));
     let inboxHeaders = element.all(by.css('.bog'));
     let mailBody = element.all(by.css('.y2'));
 
@@ -28,23 +28,21 @@ let inboxPage = function () {
         mailDescription.sendKeys(description)
     };
 
-    this.newDraft = function () {//delay
+    this.newDraft = function () {
         browser.get("https://mail.google.com/mail/#inbox?compose=new");
-        //browser.sleep(delay);
         browser.wait(element(by.name('to')).isPresent());
     };
 
-    this.Send = function (delay) {
+    this.Send = function () {
         browser.actions().keyDown(protractor.Key.CONTROL).sendKeys('\uE007').perform();
         browser.get("https://mail.google.com/mail/#sent");
-        browser.sleep(delay);
     };
-
+    //looks like this functions are not working
     this.createdEmailCheck = function (RandomTitle, BodyText) {
         for (let i = 0; i < headerList.length; i++) {
             if (headerList[i] == RandomTitle) {
-                expect(headerList.get(i).getText()).toBe(RandomTitle);
-                expect(list.get(i).getText()).toBe(' - ' + BodyText);
+                //expect(headerList.get(i).getText()).toBe(RandomTitle);
+                expect(list.get(i).getText()).toBe(' - ' + BodyText + "EXTRA INFO FOR TEST");
                 break;
             }
         }

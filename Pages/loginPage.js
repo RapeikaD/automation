@@ -1,32 +1,35 @@
 let loginPage = function () {
+    let EC = protractor.ExpectedConditions;
 
 	let idr = element(by.name('identifier'));
-	let idNext = element(by.id('identifierNext'));
 	let password = element(by.name('password'));
-	let passwordNext = element(by.id('passwordNext'));
+    let data = require("../Data/data.js");
+
+    this.login = function (login, password) {
+        this.enterName(login);
+        this.submit();
+        browser.wait(EC.visibilityOf($('div[id="password"] input[name="password"]')), 10000);
+        this.enterPassword(password);
+        this.submit();
+        browser.wait(element(by.css(".T-I")).isPresent());
+        browser.wait(EC.visibilityOf($('div[role="navigation"]')), 10000);
+    };
 	
 	this.enterName = function(email) {
 		idr.sendKeys(email)
-	};
-
-	this.submitLogin = function() {
-		idNext.click()
 	};
 
 	this.enterPassword = function(pas) {
 		password.sendKeys(pas)
 	};
 
-	this.submitPassword = function(delay) {
-		passwordNext.click();
-        //browser.wait(element(by.css(".T-I")).isPresent());
-        //browser.sleep(delay);
+	this.submit = function() {
+        browser.actions().sendKeys(protractor.Key.ENTER).perform();
 	};
 
 	this.open = function(link) {
         browser.waitForAngularEnabled(false);
         browser.get(link);
 	};
-
 };
 module.exports = new loginPage();
