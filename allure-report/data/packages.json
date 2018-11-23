@@ -1,0 +1,33 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
+  "children" : [ {
+    "name" : "This is first ptr test which",
+    "children" : [ {
+      "name" : "should send email and verify Sent email",
+      "uid" : "492780d81179ce24",
+      "parentUid" : "77f71b3ae0745847a6ae420406e00add",
+      "status" : "passed",
+      "time" : {
+        "start" : 1541074084846,
+        "stop" : 1541074107235,
+        "duration" : 22389
+      },
+      "flaky" : true,
+      "parameters" : [ ]
+    }, {
+      "name" : "should check presence of email sent from account 1",
+      "uid" : "ff8fe4b84f3a9958",
+      "parentUid" : "77f71b3ae0745847a6ae420406e00add",
+      "status" : "passed",
+      "time" : {
+        "start" : 1541074107235,
+        "stop" : 1541074118364,
+        "duration" : 11129
+      },
+      "flaky" : true,
+      "parameters" : [ ]
+    } ],
+    "uid" : "77f71b3ae0745847a6ae420406e00add"
+  } ]
+}

@@ -1,0 +1,59 @@
+{
+  "uid" : "274226f41e33c2e9",
+  "name" : "should send email and verify Sent email",
+  "fullName" : "This is first ptr test which.should send email and verify Sent email",
+  "historyId" : "291c0e3cb22a09a9e6b6e17a9cd13813",
+  "time" : {
+    "start" : 1540992217077,
+    "stop" : 1540992243622,
+    "duration" : 26545
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "8e178c6cc84261f7",
+      "name" : "Screenshot",
+      "source" : "8e178c6cc84261f7.png",
+      "type" : "image/png",
+      "size" : 5192
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : true,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "This is first ptr test which"
+  }, {
+    "name" : "testClass",
+    "value" : "This is first ptr test which"
+  }, {
+    "name" : "testMethod",
+    "value" : "should send email and verify Sent email"
+  }, {
+    "name" : "package",
+    "value" : "This is first ptr test which"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "274226f41e33c2e9.json",
+  "parameterValues" : [ ]
+}

@@ -23,6 +23,7 @@
     "allure-commandline": "^2.7.0",
     "chance": "^1.0.16",
     "decache": "^4.4.1",
-    "jasmine-allure-reporter": "^1.0.2"
+    "jasmine-allure-reporter": "^1.0.2",
+    "protractor": "^5.4.1"
   }
 }

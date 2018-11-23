@@ -1,0 +1,59 @@
+{
+  "uid" : "5f704761b91ec5b4",
+  "name" : "should check presence of email sent from account 1",
+  "fullName" : "This is first ptr test which.should check presence of email sent from account 1",
+  "historyId" : "109b9f1cc0fdd3300b3f7149e3c562f7",
+  "time" : {
+    "start" : 1540294791908,
+    "stop" : 1540294799971,
+    "duration" : 8063
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "feb996d031a07efe",
+      "name" : "Screenshot",
+      "source" : "feb996d031a07efe.png",
+      "type" : "image/png",
+      "size" : 5192
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : true,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "This is first ptr test which"
+  }, {
+    "name" : "testClass",
+    "value" : "This is first ptr test which"
+  }, {
+    "name" : "testMethod",
+    "value" : "should check presence of email sent from account 1"
+  }, {
+    "name" : "package",
+    "value" : "This is first ptr test which"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "5f704761b91ec5b4.json",
+  "parameterValues" : [ ]
+}

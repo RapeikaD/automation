@@ -1,0 +1,45 @@
+{
+  "uid" : "40fa529cf4592b00",
+  "name" : "should check presence of email sent from account 1",
+  "fullName" : "This is first ptr test which.should check presence of email sent from account 1",
+  "historyId" : "109b9f1cc0fdd3300b3f7149e3c562f7",
+  "time" : {
+    "start" : 1540995088305,
+    "stop" : 1540995208393,
+    "duration" : 120088
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.",
+  "statusTrace" : "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.\n                    at Timeout._onTimeout (C:\\Users\\Dzmitry.Rapeika\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\jasmine-core\\lib\\jasmine-core\\jasmine.js:4281:23)\n                    at ontimeout (timers.js:498:11)\n                    at tryOnTimeout (timers.js:323:5)\n                    at Timer.listOnTimeout (timers.js:290:5)",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "This is first ptr test which"
+  }, {
+    "name" : "testClass",
+    "value" : "This is first ptr test which"
+  }, {
+    "name" : "testMethod",
+    "value" : "should check presence of email sent from account 1"
+  }, {
+    "name" : "package",
+    "value" : "This is first ptr test which"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "40fa529cf4592b00.json",
+  "parameterValues" : [ ]
+}
