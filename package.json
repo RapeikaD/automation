@@ -6,7 +6,8 @@
   "scripts": {
     "pretest": "rm -rf allure-report",
     "test": "protractor conf.js",
-    "posttest": "allure generate allure-results --clean -o allure-report || true"
+    "posttest": "allure generate allure-results --clean -o allure-report || true",
+    "protractor": "protractor protractor.conf.js --suite all"
   },
   "repository": {
     "type": "git",
