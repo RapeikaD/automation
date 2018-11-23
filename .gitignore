@@ -1,6 +1,7 @@
 screenshots/
 node_modules/
 allure-results/
+allure-report/
 examples/
 .idea/
 screenshots/
