@@ -1,14 +1,17 @@
+let data = require("../Data/data.js");
+
+
 let loginPage = function () {
     let EC = protractor.ExpectedConditions;
-
+    let passFieldLocator = 'div[id="password"] input[name="password"]'
 	let idr = element(by.name('identifier'));
 	let password = element(by.name('password'));
     let data = require("../Data/data.js");
 
-    this.login = function (login, password) {
+    this.logIn = function (login, password) {
         this.enterName(login);
         this.submit();
-        browser.wait(EC.visibilityOf($('div[id="password"] input[name="password"]')), 10000);
+        browser.wait(EC.visibilityOf($(passFieldLocator)), 10000);
         this.enterPassword(password);
         this.submit();
         browser.wait(element(by.css(".T-I")).isPresent());
@@ -27,9 +30,9 @@ let loginPage = function () {
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
 	};
 
-	this.open = function(link) {
+	this.open = function() {
         browser.waitForAngularEnabled(false);
-        browser.get(link);
+        browser.get(data.site);
 	};
 };
 module.exports = new loginPage();

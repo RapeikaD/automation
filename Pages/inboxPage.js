@@ -1,6 +1,3 @@
-let chance = require('chance');
-chance = new chance();
-
 let inboxPage = function () {
 
     let receiver = element(by.name('to'));
@@ -9,6 +6,7 @@ let inboxPage = function () {
 
     //collect all titles for further check presence of required one
     let headerList = element.all(by.css('.bog'));
+    //let headerList = element(by.xpath('//span[text()='+ spec.RandomTitle +']'));
     let list = element.all(by.css('.y2'));
 
     //variables to look for email received from first user
@@ -16,24 +14,25 @@ let inboxPage = function () {
     let inboxHeaders = element.all(by.css('.bog'));
     let mailBody = element.all(by.css('.y2'));
 
-    this.SendTo = function (to) {
+    this.typeReceiverEmail = function (to) {
         receiver.sendKeys(to)
     };
 
-    this.TypeTitle = function (title) {
+    this.typeTitle = function (title) {
         mailTitle.sendKeys(title)
     };
 
-    this.TypeDescription = function (description) {
+    this.typeDescription = function (description) {
         mailDescription.sendKeys(description)
     };
 
-    this.newDraft = function () {
+    this.createNewDraft = function () {
         browser.get("https://mail.google.com/mail/#inbox?compose=new");
+        //browser.get($.emailURL + '#inbox?compose=new');
         browser.wait(element(by.name('to')).isPresent());
     };
 
-    this.Send = function () {
+    this.send = function () {
         browser.actions().keyDown(protractor.Key.CONTROL).sendKeys('\uE007').perform();
         browser.get("https://mail.google.com/mail/#sent");
     };
@@ -48,6 +47,10 @@ let inboxPage = function () {
         }
     };
 
+   // this.createdEmailCheck = function (RandomTitle) {
+      //  expect(headerList.getText()).toBe(RandomTitle);
+    //};
+
     this.checkForRequiredEmail = function (RandomTitle, BodyText) {
         for (let e = 0; e < unreadedLetters.length; e++)
             if (unreadedLetters[e] == "test d" && inboxHeaders[e] == RandomTitle) {
@@ -55,14 +58,6 @@ let inboxPage = function () {
                 break;
             }
     };
-
-    let Title = 0;
-    this.typeRandomTitle = function () {
-        for (let i = 0; i < 10; i++) {
-            Title += chance.letter()
-        }
-        return Title
-    }
 
 };
 module.exports = new inboxPage();
