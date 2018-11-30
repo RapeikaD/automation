@@ -3,7 +3,10 @@ exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: ['./tests/spec.js'],
     url: 'https://gmail.com',
-    emailURL: 'https://mail.google.com/mail/',
+
+    params: {
+        emailURL: 'https://mail.google.com/mail/'
+    },
 
 //подключаем Allure со скриншотами
     onPrepare: function () {

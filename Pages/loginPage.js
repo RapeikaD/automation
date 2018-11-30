@@ -1,6 +1,5 @@
 let data = require("../Data/data.js");
 
-
 let loginPage = function () {
     let EC = protractor.ExpectedConditions;
     let passFieldLocator = 'div[id="password"] input[name="password"]'
@@ -32,6 +31,7 @@ let loginPage = function () {
 
 	this.open = function() {
         browser.waitForAngularEnabled(false);
+        browser.driver.manage().timeouts().implicitlyWait(10000);
         browser.get(data.site);
 	};
 };
