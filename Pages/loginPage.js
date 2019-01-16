@@ -3,8 +3,8 @@ let data = require("../Data/data.js");
 let loginPage = function () {
     let EC = protractor.ExpectedConditions;
     let passFieldLocator = 'div[id="password"] input[name="password"]'
-	let idr = element(by.name('identifier'));
-	let password = element(by.name('password'));
+    let idr = element(by.name('identifier'));
+    let password = element(by.name('password'));
     let data = require("../Data/data.js");
 
     this.logIn = function (login, password) {
@@ -16,23 +16,23 @@ let loginPage = function () {
         browser.wait(element(by.css(".T-I")).isPresent());
         browser.wait(EC.visibilityOf($('div[role="navigation"]')), 10000);
     };
-	
-	this.enterName = function(email) {
-		idr.sendKeys(email)
-	};
 
-	this.enterPassword = function(pas) {
-		password.sendKeys(pas)
-	};
+    this.enterName = function (email) {
+        idr.sendKeys(email)
+    };
 
-	this.submit = function() {
+    this.enterPassword = function (pas) {
+        password.sendKeys(pas)
+    };
+
+    this.submit = function () {
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
-	};
+    };
 
-	this.open = function() {
+    this.open = function () {
         browser.waitForAngularEnabled(false);
         browser.driver.manage().timeouts().implicitlyWait(10000);
         browser.get(data.site);
-	};
+    };
 };
 module.exports = new loginPage();

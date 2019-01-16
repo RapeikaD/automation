@@ -1,5 +1,8 @@
 {
   "name": "automation",
+  "unmockedModulePathPatterns": [
+    "jasmine-expect"
+  ],
   "version": "1.0.0",
   "description": "Rework project ",
   "main": "conf.js",
@@ -19,12 +22,28 @@
   ],
   "author": "Rapeika D",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "jasmine-protractor-matchers": "^2.0.0"
+  },
   "devDependencies": {
-    "allure-commandline": "^2.7.0",
-    "chance": "^1.0.16",
-    "decache": "^4.4.1",
+    "allure-commandline": "^2.8.1",
+    "chance": "^1.0.18",
+    "decache": "^4.5.0",
+    "expect": "^23.6.0",
     "jasmine-allure-reporter": "^1.0.2",
+    "jasmine-expect": "^3.8.4",
+    "jest": "^23.6.0",
+    "jest-extended": "^0.11.0",
     "protractor": "^5.4.1"
-  }
+  },
+  "spec_dir": "Tests",
+  "spec_files": [
+    "./tests/spec.js"
+  ],
+  "helpers": [
+    "./node_modules/jasmine-expect/index.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": false
 }
+

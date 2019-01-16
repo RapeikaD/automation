@@ -20,5 +20,5 @@ Type ```allure generate``` in console to generate report.
 # Troubleshooting guide
 If attempt to run protractor instance have failed then:
 * Update Chrome browser.
-* Update protractor
+* Update protractor (use: ```webdriver-manager update```)
 * Use ```npm update --save-dev``` to update all components.
