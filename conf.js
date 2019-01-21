@@ -1,21 +1,16 @@
 exports.config = {
-    framework: 'jasmine',
+    framework: 'jasmine2',// or use jasmine?
     seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: ['./tests/spec.js'],
-    url: 'https://gmail.com',
     params: {
-        emailURL: 'https://mail.google.com/mail/'
+        emailURL: 'https://mail.google.com/mail/',
+        defaultTimeout: 10000,
+        url: 'https://gmail.com'
     },
 
-    onPrepare: function () {
-        browser.ignoreSynchronization = true;
-    },
 
 //подключаем Allure со скриншотами
     onPrepare: function () {
-
-        //browser.ignoreSynchronization = true;//this handle function and their promises
-
         let AllureReporter = require('jasmine-allure-reporter');
         jasmine.getEnv().addReporter(new AllureReporter({
             resultsDir: 'allure-results'
@@ -28,8 +23,14 @@ exports.config = {
                 done();
             })
         });
+        //logger code:
+        let log4js = require('log4js');
+        global.logger = require('log4js').getLogger();
+        global.logger.level = 'info';
+        global.EC = protractor.ExpectedConditions
     }
 };
+
 
 
 

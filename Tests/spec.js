@@ -7,34 +7,47 @@ let chance = require('chance');
 chance = new chance();
 
 //generate random title
-let RandomTitle = chance.string({length: 7});
+let randomTitle = chance.string({length: 7});
 
-describe('This is first protractor test which', function () {
+describe('This is first protractor test which', () => {
+    beforeAll(async () => {
+        loginPage.open();
+        logger.info('Login page is opened.');
+        loginPage.logIn(data.senderEmail, data.PassOne);
+        logger.info('Login succesfull!');
+        inboxPage.createAndSendEmail(randomTitle);
+        logger.info('Email was successfully generated.');
+        decache("../Data/data.js");
+        decache("../Pages/loginPage.js");
+        decache("../Pages/inboxPage.js");
+        browser.restart();
+        data = require("../Data/data.js");
+        loginPage = require("../Pages/loginPage.js");
+        inboxPage = require("../Pages/inboxPage.js");
+    });
+
     beforeEach(function () {
-        loginPage.open()
+        loginPage.open();
     });
 
     it("should send email and verify Sent email", function () {
-        loginPage.logIn(data.senderEmail, data.PassOne);//log in gmail via 1st user
-        inboxPage.createNewDraft();//create new message
-        inboxPage.typeReceiverEmail(data.receiverEmail);//type receiver
-        inboxPage.typeTitle(RandomTitle);//type email title
-        inboxPage.typeDescription(data.BodyText);//type email description
-        inboxPage.send();
+        loginPage.logIn(data.senderEmail, data.PassOne);
+        logger.info(`Generated title is: ` + `${randomTitle}`);//log in gmail via 1st user
         inboxPage.openSentFolder();
-        console.log(`Generated title is: ` + `${RandomTitle}`);//title
-        expect(inboxPage.getElementWithTitle(RandomTitle).isPresent());//verify if header equal to generated one, if so - verify if body is equal to template
-        console.log('Email is present in "sent" folder.');
+        logger.info('Sent folder is opened.');
+        expect(inboxPage.getElementWithTitle(randomTitle).isPresent(), "Error Message ????");//verify if header equal to generated one, if so - verify if body is equal to template
     });
 
     it('should check presence of email sent from account 1', function () {
         loginPage.logIn(data.receiverEmail, data.PassTwo);//log in gmail via 2nd user
-        inboxPage.findIndexOfRequiredEmail(RandomTitle).then(function (emailIndex) {
-            console.log("Required Email was found. Email Index: " + emailIndex);
-            //expect((element.all(by.css('tr[class="zA zE"]')).get(emailIndex).getAttribute("span").getText()).includes(data.senderName)).isEqual(true);
-            inboxPage.verifyEmailTitle(emailIndex, RandomTitle);
-            inboxPage.verifySenderName(emailIndex, data.senderName);
-            inboxPage.verifyEmailBody(emailIndex, data.BodyText);
+        logger.info('Login successfull.(Receiver)');
+        inboxPage.findIndexOfRequiredEmail(randomTitle).then(function (emailIndex) {
+            inboxPage.getEmailText(emailIndex, randomTitle).then(function (text) {
+                logger.info('Required email was found. Email Index: ' + emailIndex);
+                expect(text.includes(randomTitle)).toEqual(true, logger.info('Email Title is correct!'));//negative case is not working properly
+                expect(text.includes(data.senderName)).toEqual(true, logger.info('Sender Name is correct!'));
+                expect(text.includes(data.BodyText)).toEqual(true, logger.info('Body text is correct!'));
+            });
         });
     });
 
@@ -46,5 +59,5 @@ describe('This is first protractor test which', function () {
         data = require("../Data/data.js");
         loginPage = require("../Pages/loginPage.js");
         inboxPage = require("../Pages/inboxPage.js");
-    })
+    });
 });

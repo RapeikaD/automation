@@ -10,11 +10,11 @@ let loginPage = function () {
     this.logIn = function (login, password) {
         this.enterName(login);
         this.submit();
-        browser.wait(EC.visibilityOf($(passFieldLocator)), 10000);
+        browser.wait(EC.visibilityOf($(passFieldLocator)), browser.params.defaultTimeout, "Locator wasn`t found.")//, 10000);
         this.enterPassword(password);
         this.submit();
         browser.wait(element(by.css(".T-I")).isPresent());
-        browser.wait(EC.visibilityOf($('div[role="navigation"]')), 10000);
+        browser.wait(EC.visibilityOf($('div[role="navigation"]')), browser.params.defaultTimeout, "Locator wasn`t found")//, 10000);
     };
 
     this.enterName = function (email) {
@@ -31,8 +31,8 @@ let loginPage = function () {
 
     this.open = function () {
         browser.waitForAngularEnabled(false);
-        browser.driver.manage().timeouts().implicitlyWait(10000);
-        browser.get(data.site);
+        browser.driver.manage().timeouts().implicitlyWait(browser.params.defaultTimeout);//10000
+        browser.get(browser.params.url);//data.site
     };
 };
 module.exports = new loginPage();

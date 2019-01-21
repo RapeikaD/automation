@@ -23,6 +23,7 @@
   "author": "Rapeika D",
   "license": "ISC",
   "dependencies": {
+    "jasmine": "^3.3.1",
     "jasmine-protractor-matchers": "^2.0.0"
   },
   "devDependencies": {
@@ -34,6 +35,7 @@
     "jasmine-expect": "^3.8.4",
     "jest": "^23.6.0",
     "jest-extended": "^0.11.0",
+    "log4js": "^3.0.6",
     "protractor": "^5.4.1"
   },
   "spec_dir": "Tests",
@@ -46,4 +48,3 @@
   "stopSpecOnExpectationFailure": false,
   "random": false
 }
-

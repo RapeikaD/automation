@@ -28,21 +28,28 @@ let inboxPage = function () {
 
     this.send = function () {
         browser.actions().keyDown(protractor.Key.CONTROL).sendKeys('\uE007').perform();
-        browser.wait(element(by.xpath('//span[text()="Message sent."]')).isPresent());
+        browser.wait(element(by.xpath('//span[text()="Message sent."]')).isPresent(), browser.params.defaultTimeout, "Element `Message sent` wasn`t found");//new
     };
 
     this.openSentFolder = function () {
         browser.get(`${browser.params.emailURL}` + `#sent`);
-        browser.wait(element(by.xpath('//span[text()="To: "]')).isPresent());
-        console.log('"Sent" folder is opened.')
+        browser.wait(element(by.xpath('//span[text()="To: "]')).isPresent(), browser.params.defaultTimeout, "Element `To:` wasn`t found");//new
     };
-//My function to find email index
+
+    this.createAndSendEmail = function (title) {
+        this.createNewDraft();//create new message
+        this.typeReceiverEmail(data.receiverEmail);//type receiver
+        this.typeTitle(title);//type email title
+        this.typeDescription(data.BodyText);//type email description
+        this.send();
+    };
+//this function finds email index
     this.findIndexOfRequiredEmail = function (title) {
         var deferred = protractor.promise.defer();
-        for (let letterCounter = 0; letterCounter < data.emailAmount; letterCounter++) {
-            allLetters.get(letterCounter).getAttribute("span").getText().then(function (letter) {
-                if (letter.includes(title)) {
-                    return deferred.fulfill(letterCounter);
+        for (let messageNumber = 0; messageNumber < data.emailAmount; messageNumber++) {
+            allLetters.get(messageNumber).getAttribute("span").getText().then(function (message) {
+                if (message.includes(title)) {
+                    return deferred.fulfill(messageNumber);
                 } else {
                     return deferred.reject(reason);
                 }
@@ -50,56 +57,17 @@ let inboxPage = function () {
             return deferred.promise;
         }
     };
-    /* Katarina`s function to find index of Required Email
-        this.getIndexOfEmailWithTitle = function (title) {
-            var deferred = protractor.promise.defer();
-            allLetters.getAttribute("span").each(function success(element, index) {
-                    element.getText().then(function (text) {
-                        if (text.includes(title + 'r')) {
-                            return deferred.fulfill(index)
-                        }
-                    });
-                },
-                function error(reason) {
-                    // Reject our promise and pass the reason from the getText rejection.
-                    deferred.reject(reason);
-                });
-            return deferred.promise;
-        };
-    */
-
-//this function verify if Title of received Email is equal to generated
-    this.verifyEmailTitle = function (emailIndex, title) {
-        allLetters.get(emailIndex).getAttribute("span").getText().then(function (letter) {
-            if (letter.includes(title)) {
-                console.log("Message title is correct");
-                expect(letter.includes(title)).toEqual(true);
+//this function get text of required Email
+    this.getEmailText = function (emailIndex, title) {
+        var deferred = protractor.promise.defer();
+        allLetters.get(emailIndex).getAttribute("span").getText().then(function (message) {
+            if (message.includes(title)) {
+                return deferred.fulfill(message);
             } else {
-                console.log("`Title` is incorrect ")
+                return deferred.reject(reason);
             }
         });
-    };
-//this function verify if Sender Name of received Email is equal to person who sent message
-    this.verifySenderName = function (emailIndex, senderName) {
-        allLetters.get(emailIndex).getAttribute("span").getText().then(function (letter) {
-            if (letter.includes(senderName)) {
-                console.log("Sender Name is correct.");
-                expect(letter.includes(senderName)).toEqual(true);
-            } else {
-                console.log("`Sender Name`is incorrect ")
-            }
-        });
-    };
-//this function verify if body text in Received Email is equal to generated one.
-    this.verifyEmailBody = function (emailIndex, bodyText) {
-        allLetters.get(emailIndex).getAttribute("span").getText().then(function (letter) {
-            if (letter.includes(bodyText)) {
-                console.log("Body Text is correct. ");
-                expect(letter.includes(bodyText)).toEqual(true);
-            } else {
-                console.log("`Body Text` is incorrect. ")
-            }
-        });
+        return deferred.promise;
     };
 };
 module.exports = new inboxPage();
